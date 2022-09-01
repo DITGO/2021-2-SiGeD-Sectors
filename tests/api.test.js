@@ -215,6 +215,19 @@ describe('Sample Test', () => {
     done();
   });
 
+  it('Get active sectors', async (done) => {
+
+    const res = await request(app).get('/sector/sector-active').set('x-access-token', token);
+    expect(res.statusCode).toBe(200);
+    expect(res.body.length).toBe(5);
+    expect(res.body[0].status).toBe("ativado");
+    expect(res.body[1].status).toBe("ativado");
+    expect(res.body[2].status).toBe("ativado");
+    expect(res.body[3].status).toBe("ativado");
+    expect(res.body[4].status).toBe("ativado");
+    done();
+  });
+
   it('Delete sector', async (done) => {
     const res = await request(app).delete(`/sector/delete/${id}`).set('x-access-token', token);
     expect(res.statusCode).toBe(200);

@@ -8,6 +8,12 @@ const sectorGet = async (req, res) => {
   return res.status(200).json(sectors);
 };
 
+const sectorGetActive = async (req, res) => {
+  const sectors = await Sector.find({ status: "ativado" });
+
+  return res.status(200).json(sectors);
+};
+
 const sectorId = async (req, res) => {
   const { id } = req.params;
 
@@ -102,5 +108,5 @@ const newestFourActiveSectorsGet = async (req, res) => {
 };
 
 module.exports = {
-  sectorGet, sectorId, sectorCreate, sectorUpdate, sectorDelete, newestFourSectorsGet, sectorDeactivate, newestFourActiveSectorsGet,
+  sectorGet, sectorId, sectorCreate, sectorUpdate, sectorDelete, newestFourSectorsGet, sectorDeactivate, newestFourActiveSectorsGet, sectorGetActive,
 };
