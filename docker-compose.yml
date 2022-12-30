@@ -5,12 +5,13 @@ services:
   backend_sector:
     container_name: backend_sector
     build: .
-    ports:
-      - 3004:3004
-    environment: 
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
       PORT: 3004
     env_file: .env
     volumes:
+      - ./db/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
       - ./:/code
       - node_modules:/code/node_modules
     networks: 

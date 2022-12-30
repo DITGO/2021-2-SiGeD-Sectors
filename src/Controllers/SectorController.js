@@ -11,8 +11,6 @@ const sectorGet = async (req, res) => {
 const sectorGetActive = async (req, res) => {
   const sectors = await Sector.find({ status: 'ativado' });
 
-  console.log(sectors);
-
   return res.status(200).json(sectors);
 };
 
