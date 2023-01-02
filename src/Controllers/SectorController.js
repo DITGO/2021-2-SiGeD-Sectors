@@ -3,13 +3,13 @@ const Sector = require('../Models/SectorSchema');
 const { validate } = require('../Utils/validate');
 
 const sectorGet = async (req, res) => {
-  const sectors = await Sector.find();
+  const sectors = await Sector.find().sort({ 'name': 1 });
 
   return res.status(200).json(sectors);
 };
 
 const sectorGetActive = async (req, res) => {
-  const sectors = await Sector.find({ status: "ativado" });
+  const sectors = await Sector.find({ status: 'ativado' });
 
   return res.status(200).json(sectors);
 };
