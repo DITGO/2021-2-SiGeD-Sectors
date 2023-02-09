@@ -1,15 +1,23 @@
-const validate = (name, description) => {
+const validateSectorField = (field,fielName) => {
+  if (!field) {
+    return `invalid ${fielName}`;
+  }
+};
+
+const validateSector = (name, description) => {
   const errors = [];
 
-  if (!name) {
-    errors.push('invalid name');
+  const nameError = validateSectorField(name,'name');
+  if (nameError) {
+    errors.push(nameError);
   }
 
-  if (!description) {
-    errors.push('invalid description');
+  const descriptionError = validateSectorField(description,'description');
+  if (descriptionError) {
+    errors.push(descriptionError);
   }
 
   return errors;
 };
 
-module.exports = { validate };
+module.exports = { validateSector };
