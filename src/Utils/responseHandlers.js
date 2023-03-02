@@ -11,7 +11,7 @@ const handleInvalidId = (res) => {
 };
 
 const handleValidationError = (res, errors) => {
-  return handleError(res, fields, 400);
+  return handleError(res, errors, 400);
 };
 
 
