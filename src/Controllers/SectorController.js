@@ -33,7 +33,6 @@ const sectorId = async (req, res) => {
 };
 
 const sectorCreate = async (req, res) => {
-  console.log(req.body);
   const { name, description } = req.body;
 
   const errors = validateSector(name, description);
