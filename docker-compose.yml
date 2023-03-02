@@ -13,7 +13,7 @@ services:
     volumes:
       - ./:/code
       - node_modules:/code/node_modules
-    networks: 
+    networks:
       - backend_sector
       - siged_backend
     depends_on:
@@ -23,21 +23,23 @@ services:
     container_name: db_sector
     image: mongo:4.4
     restart: always
-    ports:
-      - "3006:27017"
     environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: root-db
     env_file: .env
     volumes:
+      - ./db/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
+      - ./db/.dbshell:/home/mongodb/.dbshell
       - mongodb:/data/db
-    networks: 
+    networks:
       - backend_sector
 
-volumes: 
+volumes:
   node_modules:
   mongodb:
 
-networks: 
+networks:
   backend_sector:
   siged_backend:
     external: true
