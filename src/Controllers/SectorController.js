@@ -33,10 +33,11 @@ const sectorId = async (req, res) => {
 };
 
 const sectorCreate = async (req, res) => {
+  console.log(req.body);
   const { name, description } = req.body;
 
-  const validFields = validateSector(name, description);
-  if (validFields) return handleValidationError(res, validFields);
+  const errors = validateSector(name, description);
+  if (errors.length) return handleValidationError(res, errors);
 
   try {
     const newSector = await Sector.create({
@@ -56,8 +57,8 @@ const sectorUpdate = async (req, res) => {
   const { id } = req.params;
   const { name, description } = req.body;
 
-  const validFields = validateSector(name, description);
-  if (validFields) return handleValidationError(res, validFields);
+  const errors = validateSector(name, description);
+  if (errors.length) return handleValidationError(res, errors);
 
   try {
     const updateStatus = await Sector.findOneAndUpdate({ _id: id }, {
