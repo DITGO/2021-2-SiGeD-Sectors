@@ -10,8 +10,8 @@ const handleInvalidId = (res) => {
   return handleError(res, 'Invalid ID');
 };
 
-const handleValidationError = (res, fields) => {
-  return handleError(res, fields, 400);
+const handleValidationError = (res, errors) => {
+  return handleError(res, errors, 400);
 };
 
 
